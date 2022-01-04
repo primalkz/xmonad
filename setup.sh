@@ -1,7 +1,7 @@
 #!/bin/env bash
 
 echo "Installing necessary packages..."
-sudo pacman -S xmonad xmonad-contrib xmonad-utils stalonetray xmobar
+sudo pacman -Syu xmonad xmonad-contrib xmonad-utils stalonetray xmobar
 clear
 
 echo "choose aur helper for installing picom-ibhagwan-git. 1. paru    2. yay"
