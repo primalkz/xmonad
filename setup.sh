@@ -36,9 +36,9 @@ echo "copying stalonetray config file..."
 cp ./config/stalonetrayrc ~/.stalonetrayrc
 
 if [ -f ~/.xmobarrc ]; then
-  echo "xmobar config detected. creating backup file.."
+  echo "xmobar config detected. creating backup file and copying new config..."
   cp ~/.xmobarrc ~/.xmobarrc.bak;
-  cp ./.config/xmobarrc ~/.xmobarrc;
+  cp ./config/xmobarrc ~/.xmobarrc;
 else
   echo "copying xmobar config file..."
   cp ./config/xmobarrc ~/.xmobarrc
@@ -52,7 +52,7 @@ fc-cache -f
 mkdir -p ~/.config/
 
 if [ -f ~/.config/picom.conf ]; then
-  echo "Picom configs detected, backing up..."
+  echo "Picom configs detected, backing up and copying new config..."
   cp ~/.config/picom.conf ~/.config/picom.conf.bak;
   cp ./config/picom.conf ~/.config/picom.conf;
 else
@@ -60,8 +60,8 @@ else
   cp ./config/picom.conf ~/.config/picom.conf;
 fi
 
-if [ -d ~/.config/alacritty ]; then3
-  echo "Alacritty configs detected, backing up..."
+if [ -d ~/.config/alacritty ]; then
+  echo "Alacritty configs detected, backing up and copying new config..."
   cp ~/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml.bak;
   cp ./config/alacritty.yml ~/.config/alacritty/alacritty.yml;
 else
@@ -79,7 +79,7 @@ else
 fi
 
 if [ -d ~/.config/xmonad ]; then
-  echo "XMonad configs detected, backing up..."
+  echo "XMonad configs detected, backing up and copying new config..."
   mkdir ~/.config/xmonad.old && mv ~/.config/xmonad/* ~/.config/xmonad.old/
   cp ./config/xmonad.hs ~/.config/xmonad/;
 else
@@ -87,5 +87,5 @@ else
   mkdir ~/.config/xmonad && cp ./config/xmonad.hs ~/.config/xmonad/;
 fi
 
-sleep 1;clear
+sleep 1;
 xmonad --recompile
