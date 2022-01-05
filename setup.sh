@@ -1,11 +1,17 @@
 #!/bin/env bash
-
-echo "Installing necessary packages..."
-sudo pacman -Syu xmonad xmonad-contrib xmonad-utils stalonetray xmobar
+#-----------------
+red='\033[1;31m'
+rset='\033[0m'
+grn='\033[1;32m'
+ylo='\033[1;33m'
+blue='\033[1;34m'
+#-----------------
+echo -e "$red Installing necessary packages... $rset"
+sudo pacman -Syu xmonad xmonad-contrib xmonad-utils stalonetray xmobar base-devel alacritty
 clear
 
-echo "choose aur helper for installing picom-ibhagwan-git. 1. paru    2. yay"
-read -r -p "select aur helper (1 or 2): " ans
+echo -e "$grn choose aur helper for installing picom-ibhagwan-git. 1. paru    2. yay $rset"
+read -r -p " select aur helper (1 or 2): " ans
 
 if [ $ans -eq 1 ]
 then
@@ -22,7 +28,7 @@ mkdir -p ~/.srcs
 
 if ! command -v $HELPER &> /dev/null
 then
-  echo "Selected helper not installed. Now setup will install manually"
+  echo -e "$blue Selected helper not installed. Now setup will install manually $rset"
     git clone https://aur.archlinux.org/packages/picom-ibhagwan-git/ ~/.srcs/picom-ibhagwan-git
     (cd ~/.srcs/picom-ibhagwan-git/ && makepkg -si )
 fi
@@ -32,19 +38,19 @@ clear
 
 #copy dotfiles
 
-echo "copying stalonetray config file..."
+echo -e "$blue copying stalonetray config file... $rset"
 cp ./config/stalonetrayrc ~/.stalonetrayrc
 
 if [ -f ~/.xmobarrc ]; then
-  echo "xmobar config detected. creating backup file and copying new config..."
+  echo -e "$ylo xmobar config detected. creating backup file and copying new config... $rset"
   cp ~/.xmobarrc ~/.xmobarrc.bak;
   cp ./config/xmobarrc ~/.xmobarrc;
 else
-  echo "copying xmobar config file..."
+  echo -e "$blue copying xmobar config file... $rset"
   cp ./config/xmobarrc ~/.xmobarrc
 fi
 
-echo "copying fonts..."
+echo -e "$blue copying fonts... $rset"
 mkdir -p ~/.local/share/fonts
 cp -r ./fonts/* ~/.local/share/fonts/
 fc-cache -f
@@ -52,38 +58,38 @@ fc-cache -f
 mkdir -p ~/.config/
 
 if [ -f ~/.config/picom.conf ]; then
-  echo "Picom configs detected, backing up and copying new config..."
+  echo -e "$ylo Picom configs detected, backing up and copying new config... $rset"
   cp ~/.config/picom.conf ~/.config/picom.conf.bak;
   cp ./config/picom.conf ~/.config/picom.conf;
 else
-  echo "Installing picom configs..."
+  echo -e "$blue Installing picom configs... $rset"
   cp ./config/picom.conf ~/.config/picom.conf;
 fi
 
 if [ -d ~/.config/alacritty ]; then
-  echo "Alacritty configs detected, backing up and copying new config..."
+  echo -e "$ylo Alacritty configs detected, backing up and copying new config...$rset"
   cp ~/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml.bak;
   cp ./config/alacritty.yml ~/.config/alacritty/alacritty.yml;
 else
-  echo "Installing alacritty configs..."
+  echo -e "$blue Installing alacritty configs... $rset"
   mkdir -p ~/.config/alacritty
   cp ./config/alacritty.yml ~/.config/alacritty/alacritty.yml;
 fi
 
 if [ -d ~/wallpapers ]; then
-  echo "Adding wallpaper to ~/wallpapers..."
+  echo -e "$ylo Adding wallpaper to ~/wallpapers... $rset"
   cp ./wallpapers/0days.png ~/wallpapers/;
 else
-  echo "Installing wallpaper..."
+  echo -e "$blue Installing wallpaper... $rset"
   mkdir ~/wallpapers && cp -r ./wallpapers/* ~/wallpapers/;
 fi
 
 if [ -d ~/.config/xmonad ]; then
-  echo "XMonad configs detected, backing up and copying new config..."
-  mkdir ~/.config/xmonad.old && mv ~/.config/xmonad/* ~/.config/xmonad.old/
+  echo -e "$ylo XMonad configs detected, backing up and copying new config... $rset"
+  mkdir ~/.config/xmonad.bak && mv ~/.config/xmonad/* ~/.config/xmonad.bak/
   cp ./config/xmonad.hs ~/.config/xmonad/;
 else
-  echo "Installing xmonad configs..."
+  echo -e "$blue Installing xmonad configs... $rset"
   mkdir ~/.config/xmonad && cp ./config/xmonad.hs ~/.config/xmonad/;
 fi
 
