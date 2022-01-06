@@ -7,7 +7,7 @@ ylo='\033[1;33m'
 blue='\033[1;34m'
 #-----------------
 echo -e "$red Installing necessary packages... $rset"
-sudo pacman -Syu xmonad xmonad-contrib xmonad-utils stalonetray xmobar base-devel alacritty xwallpaper
+sudo pacman -Syu xmonad xmonad-contrib xmonad-utils stalonetray xmobar base-devel alacritty xwallpaper xorg-xsetroot
 clear
 
 echo -e "$grn choose aur helper for installing picom-ibhagwan-git. 1. paru    2. yay $rset"
@@ -78,7 +78,7 @@ fi
 
 if [ -d ~/wallpapers ]; then
   echo -e "$ylo Adding wallpaper to ~/wallpapers... $rset"
-  cp ./wallpapers/0days.png ~/wallpapers/;
+  cp ./wallpapers/* ~/wallpapers/;
 else
   echo -e "$blue Installing wallpaper... $rset"
   mkdir ~/wallpapers && cp -r ./wallpapers/* ~/wallpapers/;
