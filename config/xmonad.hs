@@ -262,7 +262,7 @@ myLogHook = return ()
 --
 -- By default, do nothing.
 myStartupHook = do
-            spawnOnce "xwallpaper --zoom ~/wallpapers/0days.png"
+            spawnOnce "xwallpaper --zoom ~/wallpapers/spaceman-oned.jpg"
             spawnOnce "picom -b"
             spawnOnce "xsetroot -cursor_name left_ptr &"
             spawnOnce "stalonetray &"
