@@ -7,7 +7,7 @@ ylo='\033[1;33m'
 blue='\033[1;34m'
 #-----------------
 echo -e "$red Installing necessary packages... $rset"
-sudo pacman -Syu xmonad xmonad-contrib xmonad-utils stalonetray xmobar base-devel alacritty
+sudo pacman -Syu xmonad xmonad-contrib xmonad-utils stalonetray xmobar base-devel alacritty xwallpaper
 clear
 
 echo -e "$grn choose aur helper for installing picom-ibhagwan-git. 1. paru    2. yay $rset"
