@@ -84,6 +84,15 @@ else
   mkdir ~/wallpapers && cp -r ./wallpapers/* ~/wallpapers/;
 fi
 
+if [ -d ~/.config/dunst ]; then
+  echo -e "$ylo dunst configs detected, backing up and copying new config... $rset"
+  mkdir ~/.config/dunst.bak && mv ~/.config/dunst/* ~/.config/dunst.bak/
+  cp ./config/dunstrc ~/.config/dunst/;
+else
+  echo -e "$blue Installing dunst configs... $rset"
+  mkdir ~/.config/dunst && cp ./config/dunstrc ~/.config/dunst/;
+fi
+
 if [ -d ~/.config/xmonad ]; then
   echo -e "$ylo XMonad configs detected, backing up and copying new config... $rset"
   mkdir ~/.config/xmonad.bak && mv ~/.config/xmonad/* ~/.config/xmonad.bak/
