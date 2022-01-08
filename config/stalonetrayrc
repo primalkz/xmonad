@@ -1,7 +1,7 @@
 decorations none
 transparent false
 dockapp_mode none
-geometry 5x1-750+10
+geometry 5x1-750+7
 max_geometry 1x1-200-5
 background "#1e2024"
 #background "#282c34"
