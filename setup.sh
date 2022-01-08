@@ -1,4 +1,6 @@
 #!/bin/env bash
+# Arch linux xmonad setup script
+
 #-----------------
 red='\033[1;31m'
 rset='\033[0m'
@@ -6,10 +8,11 @@ grn='\033[1;32m'
 ylo='\033[1;33m'
 blue='\033[1;34m'
 #-----------------
+clear
 echo -e "$red Installing necessary packages... $rset"
 sudo pacman -Syu xmonad xmonad-contrib xmonad-utils stalonetray xmobar base-devel alacritty xwallpaper xorg-xsetroot
-clear
 
+clear
 echo -e "$grn choose aur helper for installing picom-ibhagwan-git. 1. paru    2. yay $rset"
 read -r -p " select aur helper (1 or 2): " ans
 
@@ -29,11 +32,12 @@ mkdir -p ~/.srcs
 if ! command -v $HELPER &> /dev/null
 then
   echo -e "$blue Selected helper not installed. Now setup will install manually $rset"
-    git clone https://aur.archlinux.org/packages/picom-ibhagwan-git/ ~/.srcs/picom-ibhagwan-git
+    git clone https://aur.archlinux.org/picom-ibhagwan-git.git ~/.srcs/picom-ibhagwan-git
     (cd ~/.srcs/picom-ibhagwan-git/ && makepkg -si )
+else
+  $HELPER -S picom-ibhagwan-git
 fi
 
-$HELPER -S picom-ibhagwan-git
 clear
 
 #copy dotfiles
