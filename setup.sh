@@ -107,4 +107,8 @@ else
 fi
 
 sleep 1;
-xmonad --recompile
+if [ -d ~/.xmonad ]; then
+  rm -rf ~/.xmonad && xmonad --recompile;
+else
+  xmonad --recompile
+fi
