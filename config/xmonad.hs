@@ -16,8 +16,16 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
 import Graphics.X11.ExtraTypes.XF86
 import XMonad.Hooks.EwmhDesktops
+
+
+-- layout
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Spacing
+
+import XMonad.Layout.BinarySpacePartition
+import XMonad.Layout.Spiral
+import XMonad.Layout.LayoutModifier
+import XMonad.Layout.Reflect
 
 
 import qualified XMonad.StackSet as W
@@ -56,7 +64,7 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["I","II","III","IV","V","VI","VII","VIII","IX"]
+myWorkspaces    = ["\985015 term","\983609 web","\984944 files","\985977 chat","\983412 code","\983572 extra","\984423 mov"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -72,7 +80,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run -c -l 8 -p dmenu")
+    , ((modm,               xK_p     ), spawn "dmenu_run")
     
     -- volume keys
     , ((0, xF86XK_AudioLowerVolume   ), spawn "pactl -- set-sink-volume 0 -5%")
@@ -195,8 +203,10 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts ( tiled ||| Mirror tiled ||| Full)
+myLayout = avoidStruts (( (smartBorders  (smartSpacing 8 (reflectHoriz (emptyBSP))))) ||| (smartSpacing 8 (spiral (6/7))) ||| tiled ||| Mirror tiled ||| Full)
   where
+     -- default bsp algorithm
+
      -- default tiling algorithm partitions the screen into two panes
      tiled   = spacing 9 $ Tall nmaster delta ratio
 
@@ -272,24 +282,24 @@ myBar = "xmobar"
 
 -- myPP = xmobarPP { ppCurrent = xmobarColor "429942" "" . wrap "|" "|" }
 myPP = xmobarPP
-    { ppCurrent = brightGreen . wrap "[" "]"
+    { ppCurrent = brightGreen . wrap "" ""
     , ppVisible = lowWhite
     , ppHidden = grey
     --, ppHiddenNoWindows = darkGrey
-    , ppTitle = lowWhite . shorten 60
-    , ppSep = darkGrey " | " 
+    , ppTitle = blue . shorten 25
+    , ppSep = darkGrey " | "
     , ppUrgent = red . wrap "!" "!"
     , ppExtras  = []
     , ppOrder  = \(ws:l:t) -> ws:l:t
     }
   where
-    brightGreen, lowWhite, grey, darkGrey, red :: String -> String
-    brightGreen = xmobarColor "#b1e19b" ""
-    lowWhite    = xmobarColor "#D0D0D0" ""
+    brightGreen, lowWhite, grey, darkGrey, red, blue :: String -> String
+    brightGreen = xmobarColor "#98c379" ""
+    lowWhite    = xmobarColor "#c8ccd4" ""
     grey        = xmobarColor "#A6A6A6" ""
     darkGrey    = xmobarColor "#595958" ""
-    red         = xmobarColor "#8C2F1B" ""
-
+    red         = xmobarColor "#e06c75" ""
+    blue        = xmobarColor "#61afef" ""
 
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 
