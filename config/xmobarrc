@@ -1,7 +1,7 @@
 Config { 
 
    -- appearance
-     font =         "xft:Material Design Icons:style=Regular:size=14, JetBrains Mono:size=9.3:style=bold:antialias=true, JetBrainsMono Nerd Font:size=12.8:antialias=true,FontAwesome:style=Regular"
+     font =         "xft:Material Design Icons:style=Regular:size=13, JetBrains Mono:size=10:style=Bold:antialias=true, JetBrainsMono Nerd Font:size=12.8:antialias=true,FontAwesome:style=Regular"
    , bgColor =      "#1e2127"
    , fgColor =      "#b1e19b"
    , position =     TopH 33
@@ -46,10 +46,11 @@ Config {
         , Run StdinReader
         
         -- Volume #c5f5af
-        , Run Volume "default" "Master" ["--template", "<fc=#000000,#b1e19b> 󱄠 </fc><fc=#c5f5af,#23262c> <volume>% </fc>"] 10
+        , Run Volume "default" "Master" [ "--template", "<fc=#98c379,#282c34> 󰕾 </fc><fc=#98c379,#232c34> <volume>% </fc>"
+                                        ] 10
 
         -- network activity monitor (dynamic interface resolution) #ff9cbb,
-        , Run DynNetwork     [ "--template" , "<fc=#b0a4e1,#23262c> 󰯎 </fc> <fc=#b0a4e1><tx>kB/s|<rx>kB/s</fc> <fc=#000000,#dc7493> 󰤪 </fc><fc=#ff9cbb,#23262c> <dev> </fc>"
+        , Run DynNetwork     [ "--template" , "<fc=#b0a4e1,#23262c> 󰯎 </fc> <fc=#b0a4e1><tx>kB/s|<rx>kB/s</fc> <fc=#e06c75,#282c34> 󰤪 </fc><fc=#e06c75,#282c34> <dev> </fc>"
                              , "--Low"      , "1000"       -- units: B/s
                              , "--High"     , "5000"       -- units: B/s
                              , "--low"      , "#9c90cd"
@@ -74,13 +75,13 @@ Config {
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 50
-                          
+
         -- memory usage monitor
-        , Run Memory         [ "--template" ,"<fc=#b4c9fb,#23262c> 󰍛 </fc> <fc=#c8ddff><usedratio>%</fc>"
-                             , "--Low"      , "20"        -- units: %
-                             , "--High"     , "90"        -- units: %
-                             , "--low"      , "#b4c9fb"
-                             , "--normal"   , "darkorange"
+        , Run Memory         [ "--template" ,"<fc=#61afef,#23262c> 󰞰 </fc> <fc=#61afef><used>M</fc>"
+                             , "--Low"      , "3000"        -- units: MiB
+                             , "--High"     , "10000"        -- units: MiB
+                             , "--low"      , "#61afef"
+                             , "--normal"   , "#e5c07b"
                              , "--high"     , "darkred"
                              ] 10
 
@@ -101,9 +102,10 @@ Config {
                                        , "-i"	, "<fc=#006000>Charged</fc>"
                              ] 50
 
-        -- time and date indicator 
+        -- time and date indicator
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
-        , Run Date           "<fc=#373a40,#1e2127></fc><fc=#c5c8c6,#373a40>󱑆 </fc><fc=#c5c8c6,#464a52> %F (%a) %T </fc><fc=#464a52,#1e2127></fc>" "date" 10
+        -- , Run Date           "<fc=#373a40,#1e2127></fc><fc=#c5c8c6,#373a40>󱑆 </fc><fc=#c5c8c6,#464a52> %F (%a) %T </fc><fc=#464a52,#1e2127></fc>" "date" 10
+        , Run Date           "<fc=#c5c8c6,#282c34> 󱑆 </fc><fc=#c5c8c6,#353b45> %F (%a) %H:%M </fc>" "date" 10
 
         ]
    }
