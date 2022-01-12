@@ -13,7 +13,7 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = " %StdinReader%  }{ <action=`alacritty -e htop`>%multicpu%</action> %memory% <action=`alacritty -e nmtui`>%dynnetwork%</action> %default:Master% %date% "
+   , template = " %StdinReader%  }{ <action=`alacritty -e htop`>%multicpu%</action> %memory% <action=`alacritty -e nmtui`>%dynnetwork%</action> %default:Master% %date%%trayerpad%"
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -50,16 +50,16 @@ Config {
                                         ] 10
 
         -- network activity monitor (dynamic interface resolution) #ff9cbb,
-        , Run DynNetwork     [ "--template" , "<fc=#b0a4e1,#23262c> 󰯎 </fc> <fc=#b0a4e1><tx>kB/s|<rx>kB/s</fc> <fc=#e06c75,#282c34> 󰤪 </fc><fc=#e06c75,#282c34> <dev> </fc>"
+        , Run DynNetwork     [ "--template" , "<fc=#56b6c2,#23262c> 󰯎 </fc> <fc=#56b6c2><tx>kB/s|<rx>kB/s</fc> <fc=#e06c75,#282c34> 󰤪 </fc><fc=#e06c75,#282c34> <dev> </fc>"
                              , "--Low"      , "1000"       -- units: B/s
                              , "--High"     , "5000"       -- units: B/s
-                             , "--low"      , "#9c90cd"
-                             , "--normal"   , "darkorange"
+                             , "--low"      , "#56b6c2"
+                             , "--normal"   , "#56b6c2"
                              , "--high"     , "#cc6666"
                              ] 10
 
         -- cpu activity monitor
-        , Run MultiCpu       [ "--template" , "<fc=#ef8284,#23262c> 󰾆 </fc> <fc=#ef8284><total0>%</fc>"
+        , Run MultiCpu       [ "--template" , "<fc=#e06c75,#23262c> 󰾆 </fc> <fc=#e06c75><total0>%</fc>"
                              , "--Low"      , "50"         -- units: %
                              , "--High"     , "85"         -- units: %
                              , "--low"      , "#db6e70"
@@ -105,7 +105,9 @@ Config {
         -- time and date indicator
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
         -- , Run Date           "<fc=#373a40,#1e2127></fc><fc=#c5c8c6,#373a40>󱑆 </fc><fc=#c5c8c6,#464a52> %F (%a) %T </fc><fc=#464a52,#1e2127></fc>" "date" 10
-        , Run Date           "<fc=#c5c8c6,#282c34> 󱑆 </fc><fc=#c5c8c6,#353b45> %F (%a) %H:%M </fc>" "date" 10
+        , Run Date           "<fc=#e5c07b,#282c34> 󱑆 </fc><fc=#e5c07b,#353b45> %F (%a) %H:%M </fc>" "date" 10
+        -- Script that dynamically adjusts xmobar padding depending on number of trayer icons.
+        , Run Com "/bin/sh" [ "-c", "~/.config/xmonad/padding-icon.sh" ] "trayerpad" 10
 
         ]
    }
