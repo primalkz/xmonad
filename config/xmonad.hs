@@ -46,7 +46,7 @@ myClickJustFocuses = False
 
 -- Width of the window border in pixels.
 --
-myBorderWidth   = 2
+myBorderWidth   = 1
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -68,7 +68,7 @@ myWorkspaces    = ["\985015 term","\983609 web","\984944 files","\985977 chat","
 
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor  = "#dddddd"
+myNormalBorderColor  = "#1e2127"
 myFocusedBorderColor = "#81a2be"
 
 ------------------------------------------------------------------------
@@ -203,7 +203,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts (( (smartBorders  (smartSpacing 8 (reflectHoriz (emptyBSP))))) ||| (smartSpacing 8 (spiral (6/7))) ||| tiled ||| Mirror tiled ||| Full)
+myLayout = avoidStruts (( (smartBorders  (smartSpacing 11 (reflectHoriz (emptyBSP))))) ||| (smartSpacing 8 (spiral (6/7))) ||| tiled ||| Mirror tiled ||| Full)
   where
      -- default bsp algorithm
 
@@ -239,7 +239,7 @@ myManageHook = composeAll
     , className =? "Gimp"           --> doFloat
     , className =? "mpv"           --> doFloat
     , className =? "Pcmanfm"           --> doFloat
-    , className =? "KotatogramDesktop"           --> doFloat
+    , className =? "KotatogramDesktop"    --> doShift "\985977 chat"
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore ]
 
@@ -272,34 +272,39 @@ myLogHook = return ()
 --
 -- By default, do nothing.
 myStartupHook = do
+            spawnOnce "trayer --edge top --align right --widthtype request --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x1e2127  --height 28 &"
             spawnOnce "xwallpaper --zoom ~/wallpapers/spaceman-oned.jpg"
             spawnOnce "picom -b"
             spawnOnce "xsetroot -cursor_name left_ptr &"
-            spawnOnce "stalonetray &"
--- BEFORE WE LAUNCH 
+ --           spawnOnce "stalonetray &"
+
+-- BEFORE WE LAUNCH
 -- bar configuration
 myBar = "xmobar"
 
 -- myPP = xmobarPP { ppCurrent = xmobarColor "429942" "" . wrap "|" "|" }
 myPP = xmobarPP
-    { ppCurrent = brightGreen . wrap "" ""
+    { ppCurrent = yellow . wrap "" ""
     , ppVisible = lowWhite
     , ppHidden = grey
     --, ppHiddenNoWindows = darkGrey
     , ppTitle = blue . shorten 25
     , ppSep = darkGrey " | "
+    , ppLayout = darkGrey
     , ppUrgent = red . wrap "!" "!"
     , ppExtras  = []
     , ppOrder  = \(ws:l:t) -> ws:l:t
     }
   where
-    brightGreen, lowWhite, grey, darkGrey, red, blue :: String -> String
+    brightGreen, lowWhite, grey, darkGrey, red, blue, yellow :: String -> String
     brightGreen = xmobarColor "#98c379" ""
-    lowWhite    = xmobarColor "#c8ccd4" ""
-    grey        = xmobarColor "#A6A6A6" ""
-    darkGrey    = xmobarColor "#595958" ""
+    lowWhite    = xmobarColor "#abb2bf" ""
+    grey        = xmobarColor "#abb2bf" ""
+    darkGrey    = xmobarColor "#545862" ""
     red         = xmobarColor "#e06c75" ""
     blue        = xmobarColor "#61afef" ""
+    yellow      = xmobarColor "#e5c07b" ""
+
 
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 
