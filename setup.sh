@@ -101,9 +101,11 @@ if [ -d ~/.config/xmonad ]; then
   echo -e "$ylo XMonad configs detected, backing up and copying new config... $rset"
   mkdir ~/.config/xmonad.bak && mv ~/.config/xmonad/* ~/.config/xmonad.bak/
   cp ./config/xmonad.hs ~/.config/xmonad/;
+  cp ./config/padding-icon.sh ~/.config/xmonad/;
 else
   echo -e "$blue Installing xmonad configs... $rset"
   mkdir ~/.config/xmonad && cp ./config/xmonad.hs ~/.config/xmonad/;
+  cp ./config/padding-icon.sh ~/.config/xmonad/;
 fi
 
 sleep 1;
