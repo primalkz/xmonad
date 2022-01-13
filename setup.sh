@@ -42,8 +42,6 @@ clear
 
 #copy dotfiles
 
-echo -e "$blue copying stalonetray config file... $rset"
-cp ./config/stalonetrayrc ~/.stalonetrayrc
 
 if [ -f ~/.xmobarrc ]; then
   echo -e "$ylo xmobar config detected. creating backup file and copying new config... $rset"
