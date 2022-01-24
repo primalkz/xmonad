@@ -1,14 +1,14 @@
 Config { 
 
    -- appearance
-     font =         "xft:Material Design Icons:style=Regular:size=13, JetBrains Mono:size=10:style=Bold:antialias=true, JetBrainsMono Nerd Font:size=12.8:antialias=true,FontAwesome:style=Regular"
-   , bgColor =      "#1e2127"
+     font =         "xft:Material Design Icons:style=Regular:size=13, JetBrainsMono Nerd Font:size=10:antialias=true,FontAwesome:style=Regular"
+   , bgColor =      "#1f2329"
    , fgColor =      "#b1e19b"
    , position =     TopH 33
 --   , position = Static { xpos = 5 , ypos = 5, width = 1590, height = 33 }
    , border =       FullB
    , borderWidth =  5px
-   , borderColor =  "#1e2127"
+   , borderColor =  "#1f2329"
 
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
@@ -50,7 +50,7 @@ Config {
                                         ] 10
 
         -- network activity monitor (dynamic interface resolution) #ff9cbb,
-        , Run DynNetwork     [ "--template" , "<fc=#56b6c2,#23262c> 󰯎 </fc> <fc=#56b6c2><tx>kB/s|<rx>kB/s</fc> <fc=#e06c75,#282c34> 󰤪 </fc><fc=#e06c75,#282c34> <dev> </fc>"
+        , Run DynNetwork     [ "--template" , "<fc=#56b6c2>󰁞 <tx>kB/s 󰁆 <rx>kB/s</fc> <fc=#e06c75,#282c34> 󰤪 </fc><fc=#e06c75,#282c34> <dev> </fc>"
                              , "--Low"      , "1000"       -- units: B/s
                              , "--High"     , "5000"       -- units: B/s
                              , "--low"      , "#56b6c2"
@@ -105,9 +105,9 @@ Config {
         -- time and date indicator
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
         -- , Run Date           "<fc=#373a40,#1e2127></fc><fc=#c5c8c6,#373a40>󱑆 </fc><fc=#c5c8c6,#464a52> %F (%a) %T </fc><fc=#464a52,#1e2127></fc>" "date" 10
-        , Run Date           "<fc=#e5c07b,#282c34> 󱑆 </fc><fc=#e5c07b,#353b45> %F (%a) %H:%M </fc>" "date" 10
+        , Run Date           "<fc=#e5c07b,#353b45> 󱑆 </fc><fc=#e5c07b,#282c34> %F (%a) %H:%M </fc>" "date" 10
         -- Script that dynamically adjusts xmobar padding depending on number of trayer icons.
-        , Run Com "/bin/sh" [ "-c", "~/.config/xmonad/padding-icon.sh" ] "trayerpad" 10
+        , Run Com "/bin/sh" [ "-c", "~/.config/xmobar/padding-icon.sh" ] "trayerpad" 10
 
         ]
    }
