@@ -1,12 +1,3 @@
---
--- xmonad example config file.
---
--- A template showing all available configuration hooks,
--- and how to override the defaults in your own xmonad.hs conf file.
---
--- Normally, you'd only override those defaults you care about.
---
-
 import XMonad
 import Data.Monoid
 import System.Exit
@@ -272,7 +263,7 @@ myLogHook = return ()
 --
 -- By default, do nothing.
 myStartupHook = do
-            spawnOnce "trayer --edge top --align right --widthtype request --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x1e2127  --height 28 &"
+            spawnOnce "trayer --edge top --align right --widthtype request --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x1f2329  --height 28 &"
             spawnOnce "xwallpaper --zoom ~/wallpapers/spaceman-oned.jpg"
             spawnOnce "picom -b"
             spawnOnce "xsetroot -cursor_name left_ptr &"
