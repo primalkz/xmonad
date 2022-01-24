@@ -20,7 +20,7 @@ exec xmonad
 
 Or use any display manager
 
--- compile everytime with `` xmonad --recompile `` you make changes to xmonad.hs file.
+- compile everytime with `` xmonad --recompile `` you make changes to xmonad.hs file.
 
 ## Stuff used
 - WM - xmonad
@@ -28,5 +28,6 @@ Or use any display manager
 - Terminal - [siduck st](https://github.com/siduck/st) , Alacritty
 - Tray - trayer
 - notif daemon - dunst 
- 
-![xmonad Rice](https://raw.githubusercontent.com/primalkaze/xmonad/main/screenshots/screenshot.png)
+
+## screenshot
+- ![xmonad Rice](https://raw.githubusercontent.com/primalkaze/xmonad/main/screenshots/screenshot.png)
